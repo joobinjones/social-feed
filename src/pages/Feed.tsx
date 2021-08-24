@@ -1,17 +1,19 @@
+import AddEditPost from "../components/AddEditPost";
+import { IPost } from "../types";
+import Post from "../components/Post";
 import { useStore } from "../context";
-import { IPost } from "../context/postsReducer";
+
 const Feed = (): JSX.Element => {
-  const [{ posts }] = useStore();
+  const [{ posts, editingIds }] = useStore();
   return (
     <>
-      {posts.map((ele: IPost, idx: number) => (
-        <div key={idx}>
-          <div>{ele.title}</div>
-          <div>{ele.body}</div>
-          <div>{ele.author}</div>
-          <div>{ele.publishedAt}</div>
-        </div>
-      ))}
+      {posts.map((ele: IPost, idx: number) =>
+        editingIds.postId === ele.postId ? (
+          <AddEditPost post={ele} />
+        ) : (
+          <Post key={idx} post={ele} />
+        )
+      )}
     </>
   );
 };
