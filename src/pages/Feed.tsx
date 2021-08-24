@@ -1,10 +1,10 @@
-import { useStore, IStore } from "../context";
-
+import { useStore } from "../context";
+import { IPost } from "../context/postsReducer";
 const Feed = (): JSX.Element => {
-  const { posts }: IStore = useStore();
+  const [{ posts }] = useStore();
   return (
     <>
-      {posts.map((ele, idx) => (
+      {posts.map((ele: IPost, idx: number) => (
         <div key={idx}>
           <div>{ele.title}</div>
           <div>{ele.body}</div>
