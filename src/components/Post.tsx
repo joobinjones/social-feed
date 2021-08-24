@@ -29,7 +29,7 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
         <Text mt="10px" fontSize="18px">
           {post.body}
         </Text>
-        <Box mt="10px" d="flex" flexDirection="row" justifyContent="space-between">
+        <Box mt="30px" d="flex" flexDirection="row" justifyContent="space-between">
           <Text fontSize="14px">{post.author}</Text>
           <Text fontSize="14px">{post.publishedAt.substring(0, 15)}</Text>
           <Text fontSize="14px">

@@ -1,12 +1,15 @@
-import { Formik, Form, Field } from "formik";
-import { useStore } from "../context";
 import { addPost, editPost, changeEditId } from "../context/postsReducer";
-import { IPost } from "../types";
 import { Box, Button } from "@chakra-ui/react";
+import { Formik, Form, Field } from "formik";
+import { IPost } from "../types";
+import { useStore } from "../context";
 
 const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
   const [{ numOfPosts, user }, dispatch] = useStore();
-  const handleSubmit = ({ body, title }: { body: string; title: string }) => {
+  const handleSubmit = (
+    { body, title }: { body: string; title: string },
+    { resetForm }: { resetForm: Function }
+  ) => {
     if (post) {
       const editedPost: IPost = Object.assign({}, post);
       editedPost.title = title;
@@ -24,10 +27,17 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
       };
       dispatch(addPost(newPost));
     }
+    resetForm();
   };
 
   return (
-    <Box d="flex" flexDirection="column" width="400px" backgroundColor="#f0f0f0">
+    <Box
+      mb={post ? "20" : ""}
+      d="flex"
+      flexDirection="column"
+      width="400px"
+      backgroundColor="#f0f0f0"
+    >
       <Box margin="20">
         <Formik
           initialValues={
@@ -35,41 +45,43 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
           }
           onSubmit={handleSubmit}
         >
-          <Form>
-            <Box d="flex" flexDirection="column">
-              <Box mt="10" d="flex" flexDirection="column" width="300px">
-                <label htmlFor="title">Title</label>
-                <Field
-                  type="text"
-                  id="title"
-                  name="title"
-                  placeholder="Post title"
-                />
-              </Box>
-              <Box mt="10" d="flex" flexDirection="column" width="300px">
-                <label htmlFor="body">Your Post...</label>
-                <Field
-                  as="textarea"
-                  id="body"
-                  name="body"
-                  placeholder="Start typing something useless that you would like to share with random strangers for no apparent reason..."
-                />
-              </Box>
-              <Box mt="10">
-                <Button width="100px" type="submit">
-                  Submit
-                </Button>
-                {post && (
-                  <Button
-                    width="100px"
-                    onClick={() => dispatch(changeEditId({ postId: null }))}
-                  >
-                    Cancel
+          {({ isSubmitting }) => (
+            <Form>
+              <Box d="flex" flexDirection="column">
+                <Box mt="10" d="flex" flexDirection="column" width="300px">
+                  <label htmlFor="title">Title</label>
+                  <Field
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Post title"
+                  />
+                </Box>
+                <Box mt="10" d="flex" flexDirection="column" width="300px">
+                  <label htmlFor="body">Your Post...</label>
+                  <Field
+                    as="textarea"
+                    id="body"
+                    name="body"
+                    placeholder="Start typing something useless that you would like to share with random strangers for no apparent reason..."
+                  />
+                </Box>
+                <Box mt="10">
+                  <Button width="100px" type="submit">
+                    Submit
                   </Button>
-                )}
+                  {post && (
+                    <Button
+                      width="100px"
+                      onClick={() => dispatch(changeEditId({ postId: undefined }))}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </Box>
               </Box>
-            </Box>
-          </Form>
+            </Form>
+          )}
         </Formik>
       </Box>
     </Box>
