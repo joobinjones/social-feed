@@ -1,9 +1,17 @@
-import { IPost, IPostsAction, IPostsState, IComment, IEditingIds } from "../types";
+import {
+  IPost,
+  IPostsAction,
+  IPostsState,
+  IComment,
+  IEditingIds,
+  ICommentingId,
+} from "../types";
 
 export const initialState: IPostsState = {
   posts: [],
   comments: [],
   editingIds: { commentId: "", postId: "" },
+  commentingId: { postId: "" },
   numOfPosts: 0,
   user: "Jane Appleseed",
 };
@@ -36,6 +44,12 @@ export const CHANGE_EDIT_ID = "APP/FEED/POST/CHANGE_EDIT_ID";
 export const changeEditId = (editingIds: IEditingIds) => ({
   type: CHANGE_EDIT_ID,
   payload: editingIds,
+});
+
+export const CHANGE_COMMENTING_ID = "APP/FEED/POST/CHANGE_COMMENTING_ID";
+export const changeCommentingId = (commentingId: ICommentingId) => ({
+  type: CHANGE_COMMENTING_ID,
+  payload: commentingId,
 });
 
 export const copyArray = (arr: Array<any>) => {
@@ -82,6 +96,9 @@ export const postsReducer = (
     }
     case CHANGE_EDIT_ID: {
       return { ...state, editingIds: { ...state.editingIds, ...payload } };
+    }
+    case CHANGE_COMMENTING_ID: {
+      return { ...state, commentingId: payload };
     }
   }
 };

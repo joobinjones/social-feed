@@ -1,5 +1,6 @@
 import { addPost, editPost, changeEditId } from "../context/postsReducer";
 import { Box, Button } from "@chakra-ui/react";
+import { primaryBlue, dangerRed, offWhite } from "../styles/palette";
 import { Formik, Form, Field } from "formik";
 import { IPost } from "../types";
 import { useStore } from "../context";
@@ -36,7 +37,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
       d="flex"
       flexDirection="column"
       width="400px"
-      backgroundColor="#f0f0f0"
+      backgroundColor={offWhite}
     >
       <Box margin="20">
         <Formik
@@ -67,12 +68,20 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                   />
                 </Box>
                 <Box mt="10">
-                  <Button width="100px" type="submit">
+                  <Button
+                    width="100px"
+                    backgroundColor={primaryBlue}
+                    borderRadius="7px"
+                    color={offWhite}
+                    type="submit"
+                  >
                     Submit
                   </Button>
                   {post && (
                     <Button
                       width="100px"
+                      borderRadius="7px"
+                      backgroundColor="white"
                       onClick={() => dispatch(changeEditId({ postId: undefined }))}
                     >
                       Cancel

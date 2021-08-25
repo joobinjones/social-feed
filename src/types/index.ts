@@ -21,11 +21,16 @@ export interface IEditingIds {
   commentId?: string | undefined | null;
 }
 
+export interface ICommentingId {
+  postId?: string | undefined | null;
+}
+
 export interface IPostsState {
   posts: Array<IPost>;
   comments: Array<IComment>;
   numOfPosts: number;
   editingIds: IEditingIds;
+  commentingId: ICommentingId;
   user: string;
 }
 

@@ -1,13 +1,20 @@
-import { useStore } from "../context";
+import AddEditComment from "./AddEditComment";
 import { Box, Button } from "@chakra-ui/react";
+import { FaThumbsUp, FaEdit, FaTrashAlt, FaComments } from "react-icons/fa";
+import {
+  increaseLikes,
+  changeEditId,
+  deletePost,
+  changeCommentingId,
+} from "../context/postsReducer";
 import { IPost } from "../types";
+import { primaryBlue, dangerRed, offWhite } from "../styles/palette";
 import Text from "./Text";
-import { FaThumbsUp } from "react-icons/fa";
-import { increaseLikes, changeEditId, deletePost } from "../context/postsReducer";
+import { useStore } from "../context";
 
 const Post = ({ post }: { post: IPost }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, dispatch] = useStore();
+  const [{ commentingId }, dispatch] = useStore();
   return (
     <Box
       mb="20"
@@ -20,10 +27,23 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
         <Box d="flex" justifyContent="space-between">
           <Text fontSize="24px">{post.title}</Text>
           <Box>
-            <Button onClick={() => dispatch(changeEditId({ postId: post.postId }))}>
-              Edit
+            <Button
+              backgroundColor={primaryBlue}
+              borderRadius="7px"
+              color={offWhite}
+              onClick={() => dispatch(changeEditId({ postId: post.postId }))}
+            >
+              <FaEdit /> Edit
             </Button>
-            <Button onClick={() => dispatch(deletePost(post.postId))}>Delete</Button>
+            <Button
+              ml="5"
+              backgroundColor={dangerRed}
+              borderRadius="7px"
+              color={offWhite}
+              onClick={() => dispatch(deletePost(post.postId))}
+            >
+              <FaTrashAlt /> Delete
+            </Button>
           </Box>
         </Box>
         <Text mt="10px" fontSize="18px">
@@ -36,12 +56,31 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
             <FaThumbsUp /> {post.numOfReactions}
           </Text>
         </Box>
-        <Button mt="10" onClick={() => dispatch(increaseLikes(post))}>
-          Like{" "}
-          <Box ml="5">
-            <FaThumbsUp />
-          </Box>
-        </Button>
+        <Box mt="10">
+          <Button
+            borderRadius="7px"
+            backgroundColor={primaryBlue}
+            color={offWhite}
+            onClick={() => dispatch(increaseLikes(post))}
+          >
+            Like{" "}
+            <Box ml="5">
+              <FaThumbsUp />
+            </Box>
+          </Button>
+          <Button
+            borderRadius="7px"
+            onClick={() => dispatch(changeCommentingId({ postId: post.postId }))}
+            backgroundColor="white"
+            ml="5"
+          >
+            Comment{" "}
+            <Box ml="3">
+              <FaComments />
+            </Box>
+          </Button>
+        </Box>
+        {post.postId === commentingId.postId && <AddEditComment />}
       </Box>
     </Box>
   );
