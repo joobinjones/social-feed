@@ -29,6 +29,7 @@ export interface IPostsState {
   posts: Array<IPost>;
   comments: Array<IComment>;
   numOfPosts: number;
+  numOfComments: number;
   editingIds: IEditingIds;
   commentingId: ICommentingId;
   user: string;

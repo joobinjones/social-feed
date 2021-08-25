@@ -1,14 +1,36 @@
+import { addComment } from "../context/postsReducer";
 import { Box, Button } from "@chakra-ui/react";
 import { FaComments } from "react-icons/fa";
 import { Formik, Form, Field } from "formik";
 import { IComment } from "../types";
 import { offWhite, primaryBlue } from "../styles/palette";
+import { useStore } from "../context";
 
-const AddEditComment = ({ comment }: { comment?: IComment }): JSX.Element => {
+const AddEditComment = ({
+  comment,
+  postId,
+}: {
+  comment?: IComment;
+  postId: string;
+}): JSX.Element => {
+  const [{ user, numOfComments }, dispatch] = useStore();
   const handleSubmit = (
     { body }: { body: string },
     { resetForm }: { resetForm: Function }
   ) => {
+    if (comment) {
+      // edit comment state transaction
+    } else {
+      const newComment = {
+        body,
+        author: user,
+        postId,
+        commentId: String(numOfComments + 1),
+        publishedAt: new Date().toString(),
+        numOfReactions: 0,
+      };
+      dispatch(addComment(newComment));
+    }
     resetForm();
   };
   return (
@@ -21,7 +43,7 @@ const AddEditComment = ({ comment }: { comment?: IComment }): JSX.Element => {
           <Form>
             <Box mt="10" d="flex" justifyContent="space-between" alignItems="center">
               <FaComments />
-              <Box width="400px">
+              <Box width="400px" d="flex" flexDirection="column">
                 <Field
                   as="textarea"
                   width="400px"

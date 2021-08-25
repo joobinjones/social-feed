@@ -80,7 +80,9 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
             </Box>
           </Button>
         </Box>
-        {post.postId === commentingId.postId && <AddEditComment />}
+        {post.postId === commentingId.postId && (
+          <AddEditComment postId={post.postId} />
+        )}
       </Box>
     </Box>
   );

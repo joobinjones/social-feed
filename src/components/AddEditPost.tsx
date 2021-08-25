@@ -1,6 +1,6 @@
 import { addPost, editPost, changeEditId } from "../context/postsReducer";
 import { Box, Button } from "@chakra-ui/react";
-import { primaryBlue, dangerRed, offWhite } from "../styles/palette";
+import { primaryBlue, offWhite } from "../styles/palette";
 import { Formik, Form, Field } from "formik";
 import { IPost } from "../types";
 import { useStore } from "../context";

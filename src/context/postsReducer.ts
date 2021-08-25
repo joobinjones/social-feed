@@ -13,6 +13,7 @@ export const initialState: IPostsState = {
   editingIds: { commentId: "", postId: "" },
   commentingId: { postId: "" },
   numOfPosts: 0,
+  numOfComments: 0,
   user: "Jane Appleseed",
 };
 
@@ -32,6 +33,12 @@ export const DELETE_POST = "APP/FEED/POST/DELETE_POST";
 export const deletePost = (postId: string) => ({
   type: DELETE_POST,
   payload: { postId },
+});
+
+export const ADD_COMMENT = "APP/FEED/POST/ADD_COMMENT";
+export const addComment = (comment: IComment) => ({
+  type: ADD_COMMENT,
+  payload: comment,
 });
 
 export const INCREASE_LIKES = "APP/FEED/POST/INCREASE_LIKES";
@@ -87,6 +94,15 @@ export const postsReducer = (
       const postIndex = findPostIndex(postsCopy, payload.postId);
       if (postIndex > -1) postsCopy.splice(postIndex, 1);
       return { ...state, posts: postsCopy };
+    }
+    case ADD_COMMENT: {
+      const commentsCopy = copyArray(state.comments);
+      commentsCopy.unshift(payload);
+      return {
+        ...state,
+        comments: commentsCopy,
+        numOfComments: state.numOfComments + 1,
+      };
     }
     case INCREASE_LIKES: {
       const postsCopy = copyArray(state.posts);

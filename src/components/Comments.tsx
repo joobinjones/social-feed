@@ -1,4 +1,4 @@
-const Comments = (): JSX.Element => {
+const Comments = (postId: string): JSX.Element => {
   return <></>;
 };
 
