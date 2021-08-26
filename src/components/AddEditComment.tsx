@@ -1,5 +1,6 @@
 import { addComment } from "../context/postsReducer";
 import { Box, Button } from "@chakra-ui/react";
+import { changeCommentingId } from "../context/postsReducer";
 import { FaComments } from "react-icons/fa";
 import { Formik, Form, Field } from "formik";
 import { IComment } from "../types";
@@ -42,20 +43,31 @@ const AddEditComment = ({
         {({ isSubmitting }) => (
           <Form>
             <Box mt="10" d="flex" justifyContent="space-between" alignItems="center">
-              <FaComments />
-              <Box width="400px" d="flex" flexDirection="column">
+              <Button
+                onClick={() => dispatch(changeCommentingId({ postId: undefined }))}
+                border="none"
+              >
+                <FaComments fontSize="20px" />
+              </Button>
+              <Box width="75%" d="flex" flexDirection="column">
                 <Field
                   as="textarea"
-                  width="400px"
-                  id="comment-box"
-                  name="comment-box"
+                  style={{
+                    fontFamily: "Arial",
+                    borderRadius: "7px",
+                    border: "1px solid black",
+                  }}
+                  id="body"
+                  name="body"
                   placeholder="Type your comment here..."
                 />
               </Box>
               <Button
                 borderRadius="7px"
+                borderColor="transparent"
                 color={offWhite}
                 backgroundColor={primaryBlue}
+                type="submit"
               >
                 Send
               </Button>

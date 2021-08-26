@@ -17,43 +17,43 @@ export const initialState: IPostsState = {
   user: "Jane Appleseed",
 };
 
-export const ADD_POST = "APP/FEED/ADD_POST";
+const ADD_POST = "APP/FEED/ADD_POST";
 export const addPost = (post: IPost) => ({
   type: ADD_POST,
   payload: post,
 });
 
-export const EDIT_POST = "APP/FEED/POST/EDIT_POST";
+const EDIT_POST = "APP/FEED/POST/EDIT_POST";
 export const editPost = (post: IPost) => ({
   type: EDIT_POST,
   payload: post,
 });
 
-export const DELETE_POST = "APP/FEED/POST/DELETE_POST";
+const DELETE_POST = "APP/FEED/POST/DELETE_POST";
 export const deletePost = (postId: string) => ({
   type: DELETE_POST,
   payload: { postId },
 });
 
-export const ADD_COMMENT = "APP/FEED/POST/ADD_COMMENT";
+const ADD_COMMENT = "APP/FEED/POST/ADD_COMMENT";
 export const addComment = (comment: IComment) => ({
   type: ADD_COMMENT,
   payload: comment,
 });
 
-export const INCREASE_LIKES = "APP/FEED/POST/INCREASE_LIKES";
+const INCREASE_LIKES = "APP/FEED/POST/INCREASE_LIKES";
 export const increaseLikes = (post: IPost) => ({
   type: INCREASE_LIKES,
   payload: post,
 });
 
-export const CHANGE_EDIT_ID = "APP/FEED/POST/CHANGE_EDIT_ID";
+const CHANGE_EDIT_ID = "APP/FEED/POST/CHANGE_EDIT_ID";
 export const changeEditId = (editingIds: IEditingIds) => ({
   type: CHANGE_EDIT_ID,
   payload: editingIds,
 });
 
-export const CHANGE_COMMENTING_ID = "APP/FEED/POST/CHANGE_COMMENTING_ID";
+const CHANGE_COMMENTING_ID = "APP/FEED/POST/CHANGE_COMMENTING_ID";
 export const changeCommentingId = (commentingId: ICommentingId) => ({
   type: CHANGE_COMMENTING_ID,
   payload: commentingId,

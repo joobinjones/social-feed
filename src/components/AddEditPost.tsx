@@ -38,6 +38,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
       flexDirection="column"
       width="400px"
       backgroundColor={offWhite}
+      borderRadius="7px"
     >
       <Box margin="20">
         <Formik
@@ -54,6 +55,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                   <Field
                     type="text"
                     id="title"
+                    style={{ borderRadius: "7px", border: "1px solid black" }}
                     name="title"
                     placeholder="Post title"
                   />
@@ -62,6 +64,12 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                   <label htmlFor="body">Your Post...</label>
                   <Field
                     as="textarea"
+                    style={{
+                      fontFamily: "Arial",
+                      borderRadius: "7px",
+                      border: "1px solid black",
+                      height: "100px",
+                    }}
                     id="body"
                     name="body"
                     placeholder="Start typing something useless that you would like to share with random strangers for no apparent reason..."
@@ -72,6 +80,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                     width="100px"
                     backgroundColor={primaryBlue}
                     borderRadius="7px"
+                    borderColor="transparent"
                     color={offWhite}
                     type="submit"
                   >
@@ -81,6 +90,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                     <Button
                       width="100px"
                       borderRadius="7px"
+                      borderColor="transparent"
                       backgroundColor="white"
                       onClick={() => dispatch(changeEditId({ postId: undefined }))}
                     >
