@@ -1,3 +1,5 @@
+import posts from "../data/posts.json";
+
 import {
   IPost,
   IPostsAction,
@@ -8,8 +10,8 @@ import {
 } from "../types";
 
 export const initialState: IPostsState = {
-  posts: [],
-  comments: [],
+  posts,
+  comments: {},
   editingIds: { commentId: "", postId: "" },
   commentingId: { postId: "" },
   numOfPosts: 0,
@@ -35,16 +37,22 @@ export const deletePost = (postId: string) => ({
   payload: { postId },
 });
 
+const INCREASE_LIKES = "APP/FEED/POST/INCREASE_LIKES";
+export const increaseLikes = (post: IPost) => ({
+  type: INCREASE_LIKES,
+  payload: post,
+});
+
 const ADD_COMMENT = "APP/FEED/POST/ADD_COMMENT";
 export const addComment = (comment: IComment) => ({
   type: ADD_COMMENT,
   payload: comment,
 });
 
-const INCREASE_LIKES = "APP/FEED/POST/INCREASE_LIKES";
-export const increaseLikes = (post: IPost) => ({
-  type: INCREASE_LIKES,
-  payload: post,
+const INCREASE_COMMENT_LIKES = "APP/FEED/POST/COMMENT/INCREASE_LIKES";
+export const increaseCommentLikes = (comment: IComment) => ({
+  type: INCREASE_COMMENT_LIKES,
+  payload: comment,
 });
 
 const CHANGE_EDIT_ID = "APP/FEED/POST/CHANGE_EDIT_ID";
@@ -60,8 +68,8 @@ export const changeCommentingId = (commentingId: ICommentingId) => ({
 });
 
 export const copyArray = (arr: Array<any>) => {
-  const arrCopy: Array<IPost | IComment> = [];
-  arr.forEach((ele) => arrCopy.push(Object.assign({}, ele)));
+  const arrCopy: Array<any> = [];
+  arr?.forEach((ele) => arrCopy.push(Object.assign({}, ele)));
   return arrCopy;
 };
 
@@ -83,36 +91,56 @@ export const postsReducer = (
         posts: postsCopy,
       };
     }
+
     case EDIT_POST: {
       const postsCopy = copyArray(state.posts);
       const postIndex = findPostIndex(postsCopy, payload.postId);
       if (postIndex > -1) postsCopy.splice(postIndex, 1, payload);
       return { ...state, posts: postsCopy };
     }
+
     case DELETE_POST: {
       const postsCopy = copyArray(state.posts);
       const postIndex = findPostIndex(postsCopy, payload.postId);
       if (postIndex > -1) postsCopy.splice(postIndex, 1);
       return { ...state, posts: postsCopy };
     }
+
     case ADD_COMMENT: {
-      const commentsCopy = copyArray(state.comments);
+      const postId = payload.postId;
+      const commentsCopy = state.comments[postId]
+        ? copyArray(state.comments[payload.postId])
+        : [];
       commentsCopy.unshift(payload);
+      commentsCopy.sort((a, b) => a.numOfReactions - b.numOfReactions);
       return {
         ...state,
-        comments: commentsCopy,
+        comments: { ...state.comments, [payload.postId]: commentsCopy },
         numOfComments: state.numOfComments + 1,
       };
     }
+
     case INCREASE_LIKES: {
       const postsCopy = copyArray(state.posts);
       const foundPost = postsCopy.find((ele) => ele.postId === payload.postId);
       if (foundPost) foundPost.numOfReactions++;
       return { ...state, posts: postsCopy };
     }
+
+    case INCREASE_COMMENT_LIKES: {
+      const postId = payload.postId;
+      const commentsCopy = copyArray(state.comments[postId]);
+      const foundComment = commentsCopy.find(
+        (ele) => ele.commentId === payload.commentId
+      );
+      if (foundComment) foundComment.numberOfReactions++;
+      return { ...state, comments: { ...state.comments, [postId]: commentsCopy } };
+    }
+
     case CHANGE_EDIT_ID: {
       return { ...state, editingIds: { ...state.editingIds, ...payload } };
     }
+
     case CHANGE_COMMENTING_ID: {
       return { ...state, commentingId: payload };
     }

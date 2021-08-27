@@ -1,0 +1,58 @@
+[
+  {
+    "postId": "7",
+    "author": "Michael Ehrmantraut",
+    "publishedAt": "Thu Aug 26 2021 17:02",
+    "title": "This post shouldn't even exist.",
+    "body": "Because my character is already dead.",
+    "numOfReactions": 68
+  },
+  {
+    "postId": "6",
+    "author": "Saul Goodman",
+    "publishedAt": "Thu Aug 26 2021 12:30",
+    "title": "My life is over",
+    "body": "Best case scenario, 5 years from now, I'm managing a Cinnabon in Omaha.",
+    "numOfReactions": 99
+  },
+  {
+    "postId": "5",
+    "author": "Jesse Pinkman",
+    "publishedAt": "Wed Aug 25 2021 15:55",
+    "title": "Mr. White is Lying",
+    "body": "Hank isn't",
+    "numOfReactions": 75
+  },
+  {
+    "postId": "4",
+    "author": "Walter White",
+    "publishedAt": "Wed Aug 25 2021 15:54",
+    "title": "I don't know what you think I've done.",
+    "body": "Hank is lying.",
+    "numOfReactions": 3
+  },
+  {
+    "postId": "3",
+    "author": "Hank Schrader",
+    "publishedAt": "Wed Aug 25 2021 15:53",
+    "title": "I can't believe this.",
+    "body": "My brother-in-law is Heisenburg. Somehow, he's hidden it from me over a year.",
+    "numOfReactions": 112
+  },
+  {
+    "postId": "2",
+    "author": "Gustavo Fring",
+    "publishedAt": "Tue Aug 24 2021 03:42",
+    "title": "Shower Thoughts",
+    "body": "This is the time of night that I come up with my distribution plans... I don't sleep anyway. Hopefully, Walter doesn't outsmart me and win.",
+    "numOfReactions": 52
+  },
+  {
+    "postId": "1",
+    "author": "Walter White Jr.",
+    "publishedAt": "Mon Aug 23 2021 13:35",
+    "title": "This is kind of weird...",
+    "body": "I just found a ton of cash in my baby sister's room in a diaper box... I'm not sure what my parents have been up to, but I think I'll probably just pretend like I never saw it.",
+    "numOfReactions": 27
+  }
+]

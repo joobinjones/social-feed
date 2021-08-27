@@ -2,6 +2,7 @@ interface ITextProps {
   children: any;
   fontSize?: string;
   fontWeight?: number;
+  color?: string;
   ml?: string;
   mb?: string;
   mt?: string;
@@ -10,6 +11,7 @@ interface ITextProps {
 
 const Text = ({
   children,
+  color = "black",
   fontSize = "12px",
   fontWeight = 400,
   ml = "0",
@@ -22,6 +24,7 @@ const Text = ({
       style={{
         fontSize,
         fontWeight,
+        color,
         margin: `${mt} ${mr} ${mb} ${ml}`,
       }}
     >

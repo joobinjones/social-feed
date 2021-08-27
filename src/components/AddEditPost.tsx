@@ -55,7 +55,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                   <Field
                     type="text"
                     id="title"
-                    style={{ borderRadius: "7px", border: "1px solid black" }}
+                    style={{ borderRadius: "7px", border: "1px solid grey" }}
                     name="title"
                     placeholder="Post title"
                   />
@@ -67,7 +67,7 @@ const AddEditPost = ({ post }: { post?: IPost }): JSX.Element => {
                     style={{
                       fontFamily: "Arial",
                       borderRadius: "7px",
-                      border: "1px solid black",
+                      border: "1px solid grey",
                       height: "100px",
                     }}
                     id="body"

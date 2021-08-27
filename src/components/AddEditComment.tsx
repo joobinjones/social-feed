@@ -55,7 +55,7 @@ const AddEditComment = ({
                   style={{
                     fontFamily: "Arial",
                     borderRadius: "7px",
-                    border: "1px solid black",
+                    border: "1px solid grey",
                   }}
                   id="body"
                   name="body"

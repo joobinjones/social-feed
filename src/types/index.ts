@@ -25,9 +25,12 @@ export interface ICommentingId {
   postId?: string | undefined | null;
 }
 
+export interface ICommentsStore {
+  [key: string]: Array<IComment>;
+}
 export interface IPostsState {
   posts: Array<IPost>;
-  comments: Array<IComment>;
+  comments: ICommentsStore;
   numOfPosts: number;
   numOfComments: number;
   editingIds: IEditingIds;

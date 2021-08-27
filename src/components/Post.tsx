@@ -54,8 +54,12 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
           {post.body}
         </Text>
         <Box mt="30px" d="flex" flexDirection="row" justifyContent="space-between">
-          <Text fontSize="14px">{post.author}</Text>
-          <Text fontSize="14px">{post.publishedAt.substring(0, 15)}</Text>
+          <Text color="grey" fontSize="14px">
+            {post.author}
+          </Text>
+          <Text color="grey" fontSize="14px">
+            {post.publishedAt.substring(0, 21)}
+          </Text>
           <Text fontSize="14px">
             <FaThumbsUp /> {post.numOfReactions}
           </Text>
