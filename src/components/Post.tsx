@@ -1,9 +1,8 @@
 import ActionsMenu from "./ActionsMenu";
 import AddEditComment from "./AddEditComment";
-import { Box, Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import CommentsFeed from "./CommentsFeed";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaThumbsUp, FaEdit, FaTrashAlt, FaComments } from "react-icons/fa";
+import { FaThumbsUp } from "react-icons/fa";
 import {
   increaseLikes,
   changeEditId,
@@ -11,13 +10,13 @@ import {
   changeCommentingId,
 } from "../context/postsReducer";
 import { IPost } from "../types";
-import { primaryBlue, dangerRed, offWhite } from "../styles/palette";
+import { primaryBlue } from "../styles/palette";
 import Text from "./Text";
 import { useStore } from "../context";
 
 const Post = ({ post }: { post: IPost }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [{ commentingId }, dispatch] = useStore();
+  const [{ commentingId, comments }, dispatch] = useStore();
   return (
     <Box
       mb="20"
@@ -79,7 +78,7 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
         {post.postId === commentingId.postId && (
           <AddEditComment postId={post.postId} />
         )}
-        <CommentsFeed postId={post.postId} />
+        {comments[post.postId].length > 0 && <CommentsFeed postId={post.postId} />}
       </Box>
     </Box>
   );

@@ -6,13 +6,14 @@ import {
   changeEditId,
   deleteComment,
 } from "../context/postsReducer";
-import { offWhite, primaryBlue } from "../styles/palette";
+import { primaryBlue } from "../styles/palette";
 import Text from "./Text";
 import { useStore } from "../context";
 import { FaThumbsUp } from "react-icons/fa";
 
 const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
-  const [{ editingIds }, dispatch] = useStore();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, dispatch] = useStore();
   return (
     <Box
       borderTop="1px solid grey"
@@ -27,7 +28,7 @@ const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
         </Text>
         <ActionsMenu
           editCall={() => dispatch(changeEditId({ commentId: comment.commentId }))}
-          deleteCall={() => dispatch(deleteComment(comment.commentId))}
+          deleteCall={() => dispatch(deleteComment(comment))}
         />
       </Box>
       <Text fontSize="14px">{comment.body}</Text>

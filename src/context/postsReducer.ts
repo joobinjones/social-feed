@@ -56,9 +56,9 @@ export const editComment = (comment: IComment) => ({
 });
 
 const DELETE_COMMENT = "APP/FEED/POST/COMMENT/DELETE_COMMENT";
-export const deleteComment = (commentId: string) => ({
+export const deleteComment = (comment: IComment) => ({
   type: DELETE_COMMENT,
-  payload: { commentId },
+  payload: comment,
 });
 
 const INCREASE_COMMENT_LIKES = "APP/FEED/POST/COMMENT/INCREASE_LIKES";
@@ -130,6 +130,26 @@ export const postsReducer = (
         comments: { ...state.comments, [payload.postId]: commentsCopy },
         numOfComments: state.numOfComments + 1,
       };
+    }
+
+    case EDIT_COMMENT: {
+      const postId = payload.postId;
+      const commentsCopy = copyArray(state.comments[postId]);
+      const commentIndex = commentsCopy.findIndex(
+        (ele) => ele.commentId === payload.commentId
+      );
+      if (commentIndex > -1) commentsCopy.splice(commentIndex, 1, payload);
+      return { ...state, comments: { ...state.comments, [postId]: commentsCopy } };
+    }
+
+    case DELETE_COMMENT: {
+      const postId = payload.postId;
+      const commentsCopy = copyArray(state.comments[postId]);
+      const commentIndex = commentsCopy.findIndex(
+        (ele) => ele.commentId === payload.commentId
+      );
+      if (commentIndex > -1) commentsCopy.splice(commentIndex, 1);
+      return { ...state, comments: { ...state.comments, [postId]: commentsCopy } };
     }
 
     case INCREASE_LIKES: {
