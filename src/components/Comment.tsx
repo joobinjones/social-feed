@@ -1,13 +1,18 @@
+import ActionsMenu from "./ActionsMenu";
 import { Box, Button } from "@chakra-ui/react";
 import { IComment } from "../types";
-import { increaseCommentLikes } from "../context/postsReducer";
+import {
+  increaseCommentLikes,
+  changeEditId,
+  deleteComment,
+} from "../context/postsReducer";
 import { offWhite, primaryBlue } from "../styles/palette";
 import Text from "./Text";
 import { useStore } from "../context";
 import { FaThumbsUp } from "react-icons/fa";
 
 const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
-  const [globalState, dispatch] = useStore();
+  const [{ editingIds }, dispatch] = useStore();
   return (
     <Box
       borderTop="1px solid grey"
@@ -16,9 +21,15 @@ const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
       flexDirection="column"
       width="100%"
     >
-      <Text color="grey" mt="5px" mb="5px">
-        {comment.author}
-      </Text>
+      <Box d="flex" mt="5" justifyContent="space-between">
+        <Text color="grey" mt="5px" mb="5px">
+          {comment.author}
+        </Text>
+        <ActionsMenu
+          editCall={() => dispatch(changeEditId({ commentId: comment.commentId }))}
+          deleteCall={() => dispatch(deleteComment(comment.commentId))}
+        />
+      </Box>
       <Text fontSize="14px">{comment.body}</Text>
       <Box d="flex" justifyContent="space-between">
         <Text color="grey" mb="5px" mt="5px">
