@@ -1,6 +1,8 @@
+import ActionsMenu from "./ActionsMenu";
 import AddEditComment from "./AddEditComment";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import CommentsFeed from "./CommentsFeed";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { FaThumbsUp, FaEdit, FaTrashAlt, FaComments } from "react-icons/fa";
 import {
   increaseLikes,
@@ -29,25 +31,10 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
         <Box d="flex" justifyContent="space-between">
           <Text fontSize="24px">{post.title}</Text>
           <Box>
-            <Button
-              backgroundColor={primaryBlue}
-              borderRadius="7px"
-              borderColor="transparent"
-              color={offWhite}
-              onClick={() => dispatch(changeEditId({ postId: post.postId }))}
-            >
-              <FaEdit /> Edit
-            </Button>
-            <Button
-              ml="5"
-              backgroundColor={dangerRed}
-              borderColor="transparent"
-              borderRadius="7px"
-              color={offWhite}
-              onClick={() => dispatch(deletePost(post.postId))}
-            >
-              <FaTrashAlt /> Delete
-            </Button>
+            <ActionsMenu
+              editCall={() => dispatch(changeEditId({ postId: post.postId }))}
+              deleteCall={() => dispatch(deletePost(post.postId))}
+            />
           </Box>
         </Box>
         <Text mt="10px" fontSize="18px">
@@ -68,27 +55,24 @@ const Post = ({ post }: { post: IPost }): JSX.Element => {
           <Button
             borderRadius="7px"
             borderColor="transparent"
-            backgroundColor={primaryBlue}
-            color={offWhite}
+            width="30px"
+            color={primaryBlue}
+            fontSize="12px"
             onClick={() => dispatch(increaseLikes(post))}
           >
             Like{" "}
-            <Box ml="5">
-              <FaThumbsUp />
-            </Box>
           </Button>
           {commentingId.postId !== post.postId && (
             <Button
               borderRadius="7px"
               onClick={() => dispatch(changeCommentingId({ postId: post.postId }))}
-              backgroundColor="white"
               ml="5"
               borderColor="transparent"
+              width="50px"
+              color={primaryBlue}
+              fontSize="12px"
             >
-              Comment{" "}
-              <Box ml="3">
-                <FaComments />
-              </Box>
+              Comment
             </Button>
           )}
         </Box>

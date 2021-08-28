@@ -49,6 +49,18 @@ export const addComment = (comment: IComment) => ({
   payload: comment,
 });
 
+const EDIT_COMMENT = "APP/FEED/POST/COMMENT/EDIT_COMMENT";
+export const editComment = (comment: IComment) => ({
+  type: EDIT_COMMENT,
+  payload: comment,
+});
+
+const DELETE_COMMENT = "APP/FEED/POST/COMMENT/DELETE_COMMENT";
+export const deleteComment = (commentId: string) => ({
+  type: DELETE_COMMENT,
+  payload: { commentId },
+});
+
 const INCREASE_COMMENT_LIKES = "APP/FEED/POST/COMMENT/INCREASE_LIKES";
 export const increaseCommentLikes = (comment: IComment) => ({
   type: INCREASE_COMMENT_LIKES,

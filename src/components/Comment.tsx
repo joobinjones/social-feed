@@ -33,7 +33,7 @@ const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
         mb="5"
         borderColor="transparent"
         width="30px"
-        color="grey"
+        color={primaryBlue}
         fontSize="12px"
         onClick={() => dispatch(increaseCommentLikes(comment))}
       >
