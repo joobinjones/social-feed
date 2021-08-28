@@ -1,4 +1,4 @@
-import { addComment } from "../context/postsReducer";
+import { addComment, changeEditId, editComment } from "../context/postsReducer";
 import { Box, Button } from "@chakra-ui/react";
 import { changeCommentingId } from "../context/postsReducer";
 import { FaComments } from "react-icons/fa";
@@ -20,7 +20,10 @@ const AddEditComment = ({
     { resetForm }: { resetForm: Function }
   ) => {
     if (comment) {
-      // edit comment state transaction
+      const editedComment: IComment = Object.assign({}, comment);
+      editedComment.body = body;
+      dispatch(editComment(editedComment));
+      dispatch(changeEditId({ commentId: undefined }));
     } else {
       const newComment = {
         body,
@@ -35,7 +38,7 @@ const AddEditComment = ({
     resetForm();
   };
   return (
-    <Box mt="10" borderTop="1px solid grey">
+    <Box mt="10" borderTop="1px solid grey" mb={comment ? "10px" : "0px"}>
       <Formik
         initialValues={comment ? { body: comment.body } : { body: "" }}
         onSubmit={handleSubmit}
