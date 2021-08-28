@@ -1,10 +1,10 @@
 import { Box, Button } from "@chakra-ui/react";
-import { FaThumbsUp } from "react-icons/fa";
 import { IComment } from "../types";
 import { increaseCommentLikes } from "../context/postsReducer";
 import { offWhite, primaryBlue } from "../styles/palette";
 import Text from "./Text";
 import { useStore } from "../context";
+import { FaThumbsUp } from "react-icons/fa";
 
 const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
   const [globalState, dispatch] = useStore();
@@ -24,17 +24,21 @@ const Comment = ({ comment }: { comment: IComment }): JSX.Element => {
         <Text color="grey" mb="5px" mt="5px">
           {comment.publishedAt.substring(0, 21)}
         </Text>
-        <Button
-          borderRadius="7px"
-          mb="5"
-          borderColor="transparent"
-          backgroundColor={primaryBlue}
-          color={offWhite}
-          onClick={() => dispatch(increaseCommentLikes(comment))}
-        >
-          <FaThumbsUp />
-        </Button>
+        <Text fontSize="12px">
+          <FaThumbsUp /> {comment.numOfReactions}
+        </Text>
       </Box>
+      <Button
+        borderRadius="7px"
+        mb="5"
+        borderColor="transparent"
+        width="30px"
+        color="grey"
+        fontSize="12px"
+        onClick={() => dispatch(increaseCommentLikes(comment))}
+      >
+        Like
+      </Button>
     </Box>
   );
 };

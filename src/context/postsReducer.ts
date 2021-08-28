@@ -1,5 +1,5 @@
 import posts from "../data/posts.json";
-
+import comments from "../data/comments.json";
 import {
   IPost,
   IPostsAction,
@@ -11,7 +11,7 @@ import {
 
 export const initialState: IPostsState = {
   posts,
-  comments: {},
+  comments,
   editingIds: { commentId: "", postId: "" },
   commentingId: { postId: "" },
   numOfPosts: 0,
@@ -133,7 +133,7 @@ export const postsReducer = (
       const foundComment = commentsCopy.find(
         (ele) => ele.commentId === payload.commentId
       );
-      if (foundComment) foundComment.numberOfReactions++;
+      if (foundComment) foundComment.numOfReactions++;
       return { ...state, comments: { ...state.comments, [postId]: commentsCopy } };
     }
 

@@ -1,5 +1,120 @@
 {
-  "1": [],
-  "2": [],
-  "3": []
+  "1": [
+    {
+      "commentId": "1",
+      "postId": "1",
+      "author": "Badger Mayhew",
+      "body": "LOL. Might wanna just ignore that one, dude.",
+      "publishedAt": "Mon Aug 23 2021 13:37",
+      "numOfReactions": 4
+    },
+    {
+      "commentId": "2",
+      "postId": "1",
+      "author": "Skinny Pete",
+      "body": "Haha I'm sure that's just from being so awesome at science and stuff. I don't trust banks either, yo.",
+      "publishedAt": "Mon Aug 23 2021 13:45",
+      "numOfReactions": 5
+    },
+    {
+      "commentId": "3",
+      "postId": "1",
+      "author": "Skyler White",
+      "body": "Dammit, Flynn. Why would you post this in public?",
+      "publishedAt": "Mon Aug 23 2021 13:47",
+      "numOfReactions": 19
+    }
+  ],
+  "2": [
+    {
+      "commentId": "4",
+      "postId": "2",
+      "author": "Tyrus",
+      "body": "We're with you, boss.",
+      "publishedAt": "Tue Aug 24 2021 05:01",
+      "numOfReactions": 3
+    }
+  ],
+  "3": [
+    {
+      "commentId": "5",
+      "postId": "3",
+      "author": "Victor",
+      "body": "I tried to tell you this like 2 seasons ago.",
+      "publishedAt": "Wed Aug 24 2021 16:03",
+      "numOfReactions": 58
+    }
+  ],
+  "4": [
+    {
+      "commentId": "6",
+      "postId": "4",
+      "author": "Walter White Jr.",
+      "body": "I hate my life.",
+      "publishedAt": "Wed Aug 25 2021 19:00",
+      "numOfReactions": 156
+    },
+    {
+      "commentId": "7",
+      "postId": "4",
+      "author": "Hank",
+      "body": "Tell that to the judge, Walt.",
+      "publishedAt": "Wed Aug 25 2021 19:32",
+      "numOfReactions": 54
+    }
+  ],
+  "5": [
+    {
+      "commentId": "8",
+      "postId": "5",
+      "author": "Jack Welker",
+      "body": "Lying or not, we'll be seeing each other soon, Jesse.",
+      "publishedAt": "Wed Aug 25 2021 15:58",
+      "numOfReactions": 22
+    },
+    {
+      "commentId": "9",
+      "postId": "5",
+      "author": "Lydia Rodarte-Quayle",
+      "body": "If you all don't stop posting all of this publicly, I'm going to need a lot more Stevia.",
+      "publishedAt": "Wed Aug 25 2021 17:44",
+      "numOfReactions": 233
+    },
+    {
+      "commentId": "10",
+      "postId": "5",
+      "author": "Skinny Pete",
+      "body": "So... I guess no more fat stacks, huh Jesse?",
+      "publishedAt": "Wed Aug 25 2021 18:32",
+      "numOfReactions": 77
+    }
+  ],
+  "6": [
+    {
+      "commentId": "11",
+      "postId": "6",
+      "author": "Mike Ehrmantraut",
+      "body": "True... If Walter doesn't get to you first.",
+      "publishedAt": "Thu Aug 26 2021 14:16",
+      "numOfReactions": 66
+    }
+  ],
+  "7": [
+    {
+      "commentId": "12",
+      "postId": "7",
+      "author": "Jesse Pinkman",
+      "body": "This isn't even funny.",
+      "publishedAt": "Thu Aug 26 2021 20:34",
+      "numOfReactions": 89
+    },
+    {
+      "commentId": "13",
+      "postId": "7",
+      "author": "Kaylee Ehrmantraut",
+      "body": "Goodbye, Pop Pop :(",
+      "publishedAt": "Thu Aug 26 19:00",
+      "numOfReactions": 380
+    }
+  ]
 }
